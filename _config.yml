@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
-timezone: ''
+title: 熵减笔记
+subtitle: '希望可以在智能对抗熵增的过程中，做出一点微小的贡献'
+description: '分享个人学习，思考和作品'
+keywords: LLM,随想
+author: bungabungawoda
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
