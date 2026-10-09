@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"bungabungawoda.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="我最早开始使用ai agent写代码，应该是2025年的七月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。 我最初用的是cursor，当时最新的模型还是gpt-4。我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外，ai很快就">
+    <meta name="description" content="我最早开始使用ai agent写代码，应该是2025年的7月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。 初见，印象不佳最初用的是cursor，当时最新的模型还是gpt-4。我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ai-agent">
 <meta property="og:url" content="https://bungabungawoda.github.io/2026/09/28/ai-agent/index.html">
 <meta property="og:site_name" content="熵减笔记">
-<meta property="og:description" content="我最早开始使用ai agent写代码，应该是2025年的七月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。 我最初用的是cursor，当时最新的模型还是gpt-4。我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外，ai很快就">
+<meta property="og:description" content="我最早开始使用ai agent写代码，应该是2025年的7月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。 初见，印象不佳最初用的是cursor，当时最新的模型还是gpt-4。我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-09-28T13:56:37.000Z">
-<meta property="article:modified_time" content="2026-10-07T15:24:41.644Z">
+<meta property="article:modified_time" content="2026-10-09T14:21:51.567Z">
 <meta property="article:author" content="bungabungawoda">
 <meta property="article:tag" content="LLM,随想">
 <meta name="twitter:card" content="summary">
@@ -110,7 +110,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -123,6 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%A7%81%EF%BC%8C%E5%8D%B0%E8%B1%A1%E4%B8%8D%E4%BD%B3"><span class="nav-number">1.</span> <span class="nav-text">初见，印象不佳</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E6%AC%A1%E5%B0%9D%E8%AF%95%EF%BC%8C%E8%B6%85%E5%87%BA%E9%A2%84%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">再次尝试，超出预期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Harness-%E5%8A%A0%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Harness 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Harness-%E5%87%8F%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Harness 减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BD%E4%BA%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">国产模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BAagent"><span class="nav-number">6.</span> <span class="nav-text">个人agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E7%8E%A9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">新玩法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E7%95%85%E6%83%B3"><span class="nav-number">8.</span> <span class="nav-text">未来畅想</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -199,7 +200,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-10-07 23:24:41" itemprop="dateModified" datetime="2026-10-07T23:24:41+08:00">2026-10-07</time>
+      <time title="修改时间：2026-10-09 22:21:51" itemprop="dateModified" datetime="2026-10-09T22:21:51+08:00">2026-10-09</time>
     </span>
 
   
@@ -211,28 +212,33 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>我最早开始使用ai agent写代码，应该是2025年的七月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。</p>
-<p>我最初用的是cursor，当时最新的模型还是gpt-4。<br>我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.<br>之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外，ai很快就淹死在了屎山代码里。 </p>
-<p>一番嘲笑后，我也没再继续用，下次尝试就是gpt-5发布之后了。<br>那段时间听了很多张小珺的播客，连续几个嘉宾都在谈大语言模型的agentic能力。<br>于是决定再试试，刚好那段时间我也在看mcp协议，那就从天气预报查询的mcp server开始学，边学边做了一个查询个人博客更新的mcp server。</p>
-<p>背景是这样的，我关注了几十个个人博客，很多都是月更甚至年更，都是哪天想起来了手动点进去看一下，然后发现没更新。这么多个人博客，自然不可能有统一的格式，而且只有少数接了RSS，如果要写爬虫处理，只能一个个写，每加一个新的博客就要重新写然后调试，所以一直没做成自动化。</p>
-<p>我的mcp server的做法很简单，把博客目录页爬一下保存，和上次的结果对比一下文本diff，如果有新链接出现就认为是更新。本来没报什么希望，但效果却出人意料的好，第一个版本新文章识别率就超过了90%，给我很大的惊喜，稍作优化后到了95%，于是顺理成章的，我每天第一件事就变成了查看博客更新。</p>
-<p>自然而然的，我的ai agent忙起来了，自己写各种命令行工具和mcp server给自己用，出了问题自己改。甚至做出了一个循环，cursor写完代码后调claude code来review，然后根据反馈修复问题，直到review不出来问题再提交。现在回头看，也是一种goal了</p>
-<p>那个时候的大模型，Agent能力还没有现在这么强，上下文上限也很低，经常丢三落四的，前面刚说，后面就忘了。25年国庆后，我看了task master和manus的提示词分析文章，了解到可以用外部工具或者干脆用文件来跟踪任务进度和完成情况，于是就想试试。</p>
-<p>其实当时cursor也有自己的todo工具，但是有两个问题：</p>
+    <div class="post-body" itemprop="articleBody"><p>我最早开始使用ai agent写代码，应该是2025年的7月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。</p>
+<h2 id="初见，印象不佳"><a href="#初见，印象不佳" class="headerlink" title="初见，印象不佳"></a>初见，印象不佳</h2><p>最初用的是cursor，当时最新的模型还是gpt-4。<br>我还记得交给cursor的第一个任务：找到一个文件里少了对指针做判空检查的地方.<br>之所以想到让ai来做，是因为那个文件有一万多行，妥妥的屎山代码，人总是会把最不想干的事情交给ai，不出意外，ai很快就淹死在了屎山代码里。<br>一番嘲笑后，我也没再继续用。</p>
+<h2 id="再次尝试，超出预期"><a href="#再次尝试，超出预期" class="headerlink" title="再次尝试，超出预期"></a>再次尝试，超出预期</h2><p>25年9月左右，听了很多张小珺的播客，连续几个嘉宾都在谈大语言模型的agentic能力。<br>而且gpt-5也发布了，于是决定再试试，那段时间我在看mcp协议，于是就从天气预报查询的mcp server开始学，边学边做了一个查询个人博客更新的mcp server。</p>
+<p>背景是这样的，我关注了几十个个人博客，很多都是月更甚至年更，哪天想起来了就手动点进去看一下，大部分时间都是没更新的。</p>
+<p>这么多个人博客，没有统一的格式，只有少数接了RSS，如果要写爬虫处理，只能一个个写，每加一个新的博客就要重新写重新调试，所以一直没做成自动化，直到我开始学习mcp。</p>
+<p>我的做法很简单，把博客目录页爬一下保存快照，和上次的结果对比一下文本diff，塞给agent分析，如果有新链接出现就认为是更新。本来没报什么希望，效果却出人意料的好，第一个版本新文章识别率就超过了90%，给我很大的惊喜，稍微优化一下后到了95%，于是顺理成章的，我每天第一件事就变成了查看博客更新。</p>
+<p>然后就开始大量使用ai agent，让它自己写各种命令行工具和mcp server给自己用，出了问题自己改。甚至做了一个循环，cursor写完代码后调claude code来review，然后根据反馈修复问题，直到review不出来问题再提交。现在回头看，也是一种变相的goal了</p>
+<h2 id="Harness-加法"><a href="#Harness-加法" class="headerlink" title="Harness 加法"></a>Harness 加法</h2><p>重度使用ai agent后，一开始的harness是疯狂做加法。25年9月的大模型，Agent能力还没有现在这么强，上下文上限也很低，经常丢三落四，前面说的，后面就忘了。为了让agent更好用，加了很多提示词，一度把claude.md加到上千行，看到各种工具也都尝试往agent里塞</p>
+<p>25年国庆后，我看了task master和manus的分析文章，了解到可以用外部工具或者干脆用文件来跟踪任务进度和完成情况，于是就想自己动手试试。<br>其实当时cursor也有自己的todo工具，但是有两个问题：</p>
 <ol>
-<li>很难触发，可能是当时系统提示词没做好，后面的版本触发就频繁多了</li>
-<li>即使用了todo工具，也不能保证任务全部完成，经常没做完全部todo就结束了，这个工具也不对用户暴露，找不到有哪些没做</li>
+<li>很难触发，可能当时cursor的系统提示词没做好，后面的版本触发就容易多了</li>
+<li>即使用了todo工具，也不能保证任务全部完成，经常没做完全部todo就结束了，这个工具也不对用户暴露，甚至找不到有哪些没做</li>
 </ol>
-<p>所以就干脆自己做了一个任务管理工具，让ai agent收到任务后先做规划，拆解任务，把规划路线画成有向无环图。当时的模型是需要把规划图写得非常详细，每一步怎么做、怎么验收都要写清楚。规划写完以后，让agent沿着规划路线从上而下一气呵成，那种感觉就像是把多米诺骨牌一下全部推倒，无比爽快。</p>
-<p>不过现在的模型已经很强大，agent harness也非常完善，这样的外部工具已经被模型和harness吸收内化了，从今年3月开始，我就不怎么用了。但是我现在用ai agent，基本上还是先规划后执行.出于成本考虑，先和好模型聊需求、聊设计和实现，把细节都敲定以后, 写设计文档和执行手册，然后让差一点的模型来执行，然后好模型来验收。</p>
-<p>其实也就是去年和今年年初发生的事情，但是现在想起来有一种恍如隔世的感觉，还是发展太快了。</p>
-<p>关于国产模型，我心中最早的堪用模型是GLM 5.2，GLM5和GLM5.1勉强也能用，但是要无尽返工，很痛苦。</p>
+<p>所以我就干脆自己做了一个任务管理工具，让ai agent收到任务后先做规划，拆解任务，设计路线画成有向无环图。当时的模型是需要把规划图写得非常详细，每一步怎么做、怎么验收都要聊明白，写清楚，挺累的。不过规划写完以后，就可以让agent沿着设计路线从上而下一气呵成了，全自动不需要干预，那种感觉就像是把多米诺骨牌一下全部推倒，无比爽快。</p>
+<h2 id="Harness-减法"><a href="#Harness-减法" class="headerlink" title="Harness 减法"></a>Harness 减法</h2><p>到了26年，模型本身已经很强大，agent harness也非常完善，很多外部工具已经被模型和harness吸收内化了，从3月开始，我就不怎么用外部的任务管理了，对claude.md也开始删减瘦身。</p>
+<p>不过我现在用ai agent，还保留着先规划后执行的习惯，主要是出于成本考虑，先和好模型聊需求、设计和实现，把细节都敲定以后, 写设计文档和执行手册，然后让差一点的模型来执行，最后好模型来验收，差模型返工直到验收通过。</p>
+<p>其实也就是去年到今年年初发生的事情，现在想起来有一种恍如隔世的感觉，还是发展太快了。</p>
+<h2 id="国产模型"><a href="#国产模型" class="headerlink" title="国产模型"></a>国产模型</h2><p>关于国产模型，我心中最早的堪用模型是GLM 5.2，GLM5和GLM5.1勉强也能用，但是实在是太多返工了，用起来很痛苦。</p>
 <p>kimi的k3很强，但是价格太贵，速度也太慢，性价比不高。</p>
-<p>DeepSeek V4 Flash 0731的发布，这绝对是一个里程碑的事件，速度又快，模型能力又好，价格还便宜，如果不涨价就更好了。后面智谱也出了flash，前两天万年没发新模型的minimax也发了flash，deepseek把大家带入了flash的时代</p>
-<p>然后的几个月有点无聊，O和A出的新模型都有点训歪了，不说人话，还时不时降智</p>
-<p>直到jev的出现，提供了新的玩法，jev的技术含量不见得很高，发布第二天就有人复刻了，但确实提供了一个新的视角，把大模型的应用场景更细化了。直觉上jev对机器人应该有很大帮助，可以用来构建脊柱脊椎这样的神经系统</p>
-<p>最后是小模型，越来越强了，各种玩法也层出不穷，甚至有把kimi的视觉能力嫁接到GLM上的操作。也许以后的模型会变成插件式，各种的功能模块拼到一起，后训练一下，就成了一个新模型。小模型几乎可以任意定制，出于安全，专业领域，成本等诸多方面的考虑，越来越多的企业会选择后训练自己的小模型，理解业务，又懂模型训练的人会很重要。</p>
-<p>期待看到各种各样的小模型不断涌现的那一天，也许会出现一种新的商业模式，后训练一个新模型，和云厂商合作卖token然后分成，就像亚马逊给智谱分成一样。这样看来，阿里在小模型上花了很多力气，对云业务也是有帮助的</p>
+<p>DeepSeek V4 Flash 0731的发布，绝对是一个里程碑的事件，速度又快，模型能力又好，价格还便宜，如果不涨价就更好了。后面智谱和Gemini也出了flash，前两天万年没发新模型的minimax也发了flash，deepseek把大家带入了flash的时代</p>
+<h2 id="个人agent"><a href="#个人agent" class="headerlink" title="个人agent"></a>个人agent</h2><p>去年openclaw爆火，各种个人agent层出不穷，对我个人而言，常用的claude&#x2F;codex已经很好用了，只是在国内，想在手机或者平板上远程使用电脑上的agent不是很方便，那就自己动手。  </p>
+<p>首先，出于安全考虑，我不想暴露公网出口；其次，我想在多个设备上都能无缝衔接，丝滑切换。于是就有了<a target="_blank" rel="noopener" href="https://github.com/bungabungawoda/lark-remote/">lark-remote</a></p>
+<p>直接在飞书聊天里就能远程连接电脑上的各种coding agent，在飞书的流式卡片加持下，有接近TUI的体验，审批请求和任务完成通知直接通过飞书提醒，还能直接用飞书的语音转文字直接口述。现在，即使是坐在电脑前，我也都是在飞书里vibe coding了</p>
+<h2 id="新玩法"><a href="#新玩法" class="headerlink" title="新玩法"></a>新玩法</h2><p>最近几个月有点无聊，O和A出的新模型都有点训歪了，不说人话，还时不时降智</p>
+<p>直到jev出现，提供了新的玩法，jev的技术含量不见得很高，发布第二天就有人复刻了，但确实提供了一个新的视角，把大模型的应用场景更细化了。直觉上jev对机器人应该有很大帮助，可以用来构建脊椎这样的神经系统</p>
+<h2 id="未来畅想"><a href="#未来畅想" class="headerlink" title="未来畅想"></a>未来畅想</h2><p>最近的小模型也越来越强了，各种玩法花样繁多，甚至有人把kimi的视觉能力嫁接到GLM上。也许以后的模型会变成插件式，各种的功能模块拼到一起，后训练一下，就成了一个新模型。小模型几乎可以任意定制。出于安全，专业领域，成本等诸多方面的考虑，企业会越来越多的选择后训练特定的小模型，了解业务，又懂模型训练的人会很吃香。 </p>
+<p>期待看到各种各样的小模型不断涌现的那一天，也许会出现一种新的商业模式，后训练一个新模型，和云厂商合作卖token然后分成，就像亚马逊给智谱分成一样。</p>
 
     </div>
 
