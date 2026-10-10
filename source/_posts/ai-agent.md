@@ -1,7 +1,11 @@
 ---
 title: ai-agent
 date: 2026-09-28 21:56:37
+categories:
+  - 经历
 tags:
+  - ai
+  - agent
 ---
 
 我最早开始使用ai agent写代码，应该是2025年的7月，到现在已经一年出头了，回头来看，ai agent变化之快，进步之大，真是不可思议。
