@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"bungabungawoda.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="最早的决策模型是 TypeSafe 在 2026 年 9 月 15 日发布的 Jev 模型。相对输出文本的 LLM，决策模型不生成文本，直接返回带概率的结构化决策。 输入与输出先看决策模型的输入输出，TypeSafe 的 Jev 模型目前支持这几种问题和返回值：    问题类型 用途 返回值    Choice（选择） 从列表中选出一个选项 choice、probabilities、confide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decisions-model">
+<meta property="og:url" content="https://bungabungawoda.github.io/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="熵减笔记">
+<meta property="og:description" content="最早的决策模型是 TypeSafe 在 2026 年 9 月 15 日发布的 Jev 模型。相对输出文本的 LLM，决策模型不生成文本，直接返回带概率的结构化决策。 输入与输出先看决策模型的输入输出，TypeSafe 的 Jev 模型目前支持这几种问题和返回值：    问题类型 用途 返回值    Choice（选择） 从列表中选出一个选项 choice、probabilities、confide">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-23T13:37:28.000Z">
+<meta property="article:modified_time" content="2026-11-24T14:40:03.162Z">
+<meta property="article:author" content="bungabungawoda">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="决策模型">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://bungabungawoda.github.io/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://bungabungawoda.github.io/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/","path":"2026/11/23/决策模型/","title":"decisions-model"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>decisions-model | 熵减笔记</title>
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">熵减笔记</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">希望可以在智能对抗熵增的过程中，做出一点微小的贡献</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-layer-group fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">输入与输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF%EF%BC%9A%E5%BF%AB%E3%80%81%E4%BE%BF%E5%AE%9C%E3%80%81%E5%8F%AF%E8%A7%82%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">优势：快、便宜、可观测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">局限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB%E4%B8%8E%E6%89%93%E6%A0%87%E7%AD%BE"><span class="nav-number">5.</span> <span class="nav-text">场景一：文章分类与打标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9Askip-ad-%E8%AF%86%E5%88%AB%E5%B9%BF%E5%91%8A%E7%89%87%E6%AE%B5"><span class="nav-number">6.</span> <span class="nav-text">场景二：skip-ad 识别广告片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E9%9B%B6%E3%80%81%E7%B3%BB%E7%BB%9F%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E4%BA%8C"><span class="nav-number">7.</span> <span class="nav-text">系统零、系统一、系统二</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">bungabungawoda</p>
+  <div class="site-description" itemprop="description">分享个人学习，思考和作品</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bungabungawoda.github.io/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="bungabungawoda">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="熵减笔记">
+      <meta itemprop="description" content="分享个人学习，思考和作品">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="decisions-model | 熵减笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          decisions-model
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-11-23 21:37:28" itemprop="dateCreated datePublished" datetime="2026-11-23T21:37:28+08:00">2026-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-11-24 22:40:03" itemprop="dateModified" datetime="2026-11-24T22:40:03+08:00">2026-11-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最早的决策模型是 TypeSafe 在 2026 年 9 月 15 日发布的 Jev 模型。相对输出文本的 LLM，决策模型不生成文本，直接返回带概率的结构化决策。</p>
+<h2 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h2><p>先看决策模型的输入输出，TypeSafe 的 Jev 模型目前支持这几种问题和返回值：</p>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>用途</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Choice（选择）</td>
+<td>从列表中选出一个选项</td>
+<td>choice、probabilities、confidence</td>
+</tr>
+<tr>
+<td>Score（打分）</td>
+<td>按评分标准对当前状态打分</td>
+<td>score、probabilities、confidence</td>
+</tr>
+<tr>
+<td>Noul</td>
+<td>判断该陈述是否成立？</td>
+<td>noul（0-1）</td>
+</tr>
+<tr>
+<td>Box（框选）</td>
+<td>目标在图像的什么位置？</td>
+<td>box（top、bottom、left、right）、confidence</td>
+</tr>
+</tbody></table>
+<p>可以说，决策模型能做的，LLM 都可以做，那么决策模型的优势在哪呢？</p>
+<h2 id="优势：快、便宜、可观测"><a href="#优势：快、便宜、可观测" class="headerlink" title="优势：快、便宜、可观测"></a>优势：快、便宜、可观测</h2><p>主要有这几方面：</p>
+<ul>
+<li><strong>速度</strong>：官方宣称端到端延迟 70-500 ms，比 LLM 快 40-200 倍。</li>
+<li><strong>成本</strong>：输入 token 每百万价格 $0.042，便宜至少 5 倍；输出 token 直接免费，而 LLM 的输出都是远比输入贵的。</li>
+<li><strong>稳定性</strong>：即使是相同的 LLM、相同的提示词，回答也会有随机性，没把握的事情也会强答，给出充满幻觉的结果。决策模型可以输出置信度，如果模型对结果的确定性不高，是可以观测到的。</li>
+</ul>
+<h2 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h2><p>决策模型的局限性也很明显，只能做选择题，不能做填空题，复杂的任务需要人工拆解，或者LLM生成选项</p>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>那么在哪些领域，适合用决策模型而不是 LLM 呢？</p>
+<p>当下最常见的 agent 肯定是不行的，agent 需要大量的思考，但是还有很多不需要很多思考，只需要选择的场景。</p>
+<p>BrowserUse 在 Jev 刚发布没几天就出了 <a target="_blank" rel="noopener" href="https://github.com/browser-use/jev-ultrafast">jev-ultrafast</a>，网页操作飞快。我测试了下，如果不在每个动作之前加延迟，完全看不清怎么操作的。</p>
+<h2 id="场景一：文章分类与打标签"><a href="#场景一：文章分类与打标签" class="headerlink" title="场景一：文章分类与打标签"></a>场景一：文章分类与打标签</h2><p>我写了一个监控系统，定期爬取社交媒体上的文章。文章质量良莠不齐，不少全篇都是广告软文，爬下来之后需要过滤广告，分类打标签。</p>
+<p>如果用程序实现，写规则很难：要维护大量复杂的正则，还容易误判。如果训练专用模型，可能会有不错的识别效果，但前期需要人工标注大量数据，成本很高。</p>
+<p>一开始我用 LLM 做，效果不错，问题是 LLM 的返回不稳定：有时不是合法 JSON，有时标签对不上候选集，得写一堆容错和重试。现在全切到决策模型，直接丢进去打分选标签，一次请求搞定，速度快，工作流也简单了。</p>
+<p>虽然不能像 LLM 那样自由生成标签。但把标签原子化之后，让它从 200 多个常用的候选里面捞，也完全够用了。</p>
+<h2 id="场景二：skip-ad-识别广告片段"><a href="#场景二：skip-ad-识别广告片段" class="headerlink" title="场景二：skip-ad 识别广告片段"></a>场景二：skip-ad 识别广告片段</h2><p>复杂一点的任务很依赖工作流的编排。我最近写了个插件 <a target="_blank" rel="noopener" href="https://github.com/bungabungawoda/skip-ad">skip-ad</a>，目标是识别出视频里的广告片段然后跳过。</p>
+<p>插件的输入是带时间戳的字幕数据，要求可以输出广告的起止时间。具体的工作流是这样的，关键是要分而治之：</p>
+<ol>
+<li>分段喂给决策模型，粗筛出可能含广告的区间；</li>
+<li>对候选区间切小段，缩小范围，再切小段，缩小范围；</li>
+<li>最后精确到秒。</li>
+</ol>
+<p>决策模型一次请求可以带多个问题，每次可以十几分甚至是几十分，最后一轮基本都是在问，这一秒是不是起点或终点，比二分法快得多，不需要很多请求就能收敛。</p>
+<h2 id="系统零、系统一、系统二"><a href="#系统零、系统一、系统二" class="headerlink" title="系统零、系统一、系统二"></a>系统零、系统一、系统二</h2><p>TypeSafe 也把决策模型称为系统一（System one）模型。系统一和系统二的概念在丹尼尔·卡尼曼的《思考，快与慢》里提到过</p>
+<blockquote>
+<p>系统一是快速、直觉、自动且情绪化的思维；系统二是缓慢、审慎、需要付出努力、更具逻辑性的思维。</p>
+</blockquote>
+<p>相应的，我愿把程序称为<strong>系统零</strong>——毫无感情地执行指令的工具。</p>
+<p>从程序到决策模型，再到 LLM，确定性递减，而智能程度是递增的。在构建系统的时候，如果可以把它们放到合适的位置，能发挥更大的作用。</p>
+<p>LLM 加决策模型加各种程序，就像原始人手持长矛狩猎：LLM 相当于原始人的大脑，决策模型相当于脊椎神经系统，程序则是长矛这样的工具。</p>
+<p>狩猎的路线和策略，需要大脑规划；运动中的平衡，依赖脊椎快速调整；最后长矛直接接触击杀猎物。</p>
+<p>脑洞一下，如果在机器人领域，是否也需要这样的脊椎神经系统呢？</p>
+<p>有些任务给机器人的反应时间极其有限，比如东西从桌子上掉下来，能不能接得住，多思考一会就掉地上了，而场景又复杂多变，正是决策模型的舒适区。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ai/" rel="tag"># ai</a>
+              <a href="/tags/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/" rel="tag"># 决策模型</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/28/ai-agent/" rel="prev" title="ai-agent">
+                  <i class="fa fa-angle-left"></i> ai-agent
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">bungabungawoda</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

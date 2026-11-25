@@ -133,7 +133,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -144,7 +144,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -161,6 +161,145 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://bungabungawoda.github.io/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="bungabungawoda">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="熵减笔记">
+      <meta itemprop="description" content="分享个人学习，思考和作品">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 熵减笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/11/23/%E5%86%B3%E7%AD%96%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">decisions-model</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-11-23 21:37:28" itemprop="dateCreated datePublished" datetime="2026-11-23T21:37:28+08:00">2026-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-11-24 22:40:03" itemprop="dateModified" datetime="2026-11-24T22:40:03+08:00">2026-11-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最早的决策模型是 TypeSafe 在 2026 年 9 月 15 日发布的 Jev 模型。相对输出文本的 LLM，决策模型不生成文本，直接返回带概率的结构化决策。</p>
+<h2 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h2><p>先看决策模型的输入输出，TypeSafe 的 Jev 模型目前支持这几种问题和返回值：</p>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>用途</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Choice（选择）</td>
+<td>从列表中选出一个选项</td>
+<td>choice、probabilities、confidence</td>
+</tr>
+<tr>
+<td>Score（打分）</td>
+<td>按评分标准对当前状态打分</td>
+<td>score、probabilities、confidence</td>
+</tr>
+<tr>
+<td>Noul</td>
+<td>判断该陈述是否成立？</td>
+<td>noul（0-1）</td>
+</tr>
+<tr>
+<td>Box（框选）</td>
+<td>目标在图像的什么位置？</td>
+<td>box（top、bottom、left、right）、confidence</td>
+</tr>
+</tbody></table>
+<p>可以说，决策模型能做的，LLM 都可以做，那么决策模型的优势在哪呢？</p>
+<h2 id="优势：快、便宜、可观测"><a href="#优势：快、便宜、可观测" class="headerlink" title="优势：快、便宜、可观测"></a>优势：快、便宜、可观测</h2><p>主要有这几方面：</p>
+<ul>
+<li><strong>速度</strong>：官方宣称端到端延迟 70-500 ms，比 LLM 快 40-200 倍。</li>
+<li><strong>成本</strong>：输入 token 每百万价格 $0.042，便宜至少 5 倍；输出 token 直接免费，而 LLM 的输出都是远比输入贵的。</li>
+<li><strong>稳定性</strong>：即使是相同的 LLM、相同的提示词，回答也会有随机性，没把握的事情也会强答，给出充满幻觉的结果。决策模型可以输出置信度，如果模型对结果的确定性不高，是可以观测到的。</li>
+</ul>
+<h2 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h2><p>决策模型的局限性也很明显，只能做选择题，不能做填空题，复杂的任务需要人工拆解，或者LLM生成选项</p>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>那么在哪些领域，适合用决策模型而不是 LLM 呢？</p>
+<p>当下最常见的 agent 肯定是不行的，agent 需要大量的思考，但是还有很多不需要很多思考，只需要选择的场景。</p>
+<p>BrowserUse 在 Jev 刚发布没几天就出了 <a target="_blank" rel="noopener" href="https://github.com/browser-use/jev-ultrafast">jev-ultrafast</a>，网页操作飞快。我测试了下，如果不在每个动作之前加延迟，完全看不清怎么操作的。</p>
+<h2 id="场景一：文章分类与打标签"><a href="#场景一：文章分类与打标签" class="headerlink" title="场景一：文章分类与打标签"></a>场景一：文章分类与打标签</h2><p>我写了一个监控系统，定期爬取社交媒体上的文章。文章质量良莠不齐，不少全篇都是广告软文，爬下来之后需要过滤广告，分类打标签。</p>
+<p>如果用程序实现，写规则很难：要维护大量复杂的正则，还容易误判。如果训练专用模型，可能会有不错的识别效果，但前期需要人工标注大量数据，成本很高。</p>
+<p>一开始我用 LLM 做，效果不错，问题是 LLM 的返回不稳定：有时不是合法 JSON，有时标签对不上候选集，得写一堆容错和重试。现在全切到决策模型，直接丢进去打分选标签，一次请求搞定，速度快，工作流也简单了。</p>
+<p>虽然不能像 LLM 那样自由生成标签。但把标签原子化之后，让它从 200 多个常用的候选里面捞，也完全够用了。</p>
+<h2 id="场景二：skip-ad-识别广告片段"><a href="#场景二：skip-ad-识别广告片段" class="headerlink" title="场景二：skip-ad 识别广告片段"></a>场景二：skip-ad 识别广告片段</h2><p>复杂一点的任务很依赖工作流的编排。我最近写了个插件 <a target="_blank" rel="noopener" href="https://github.com/bungabungawoda/skip-ad">skip-ad</a>，目标是识别出视频里的广告片段然后跳过。</p>
+<p>插件的输入是带时间戳的字幕数据，要求可以输出广告的起止时间。具体的工作流是这样的，关键是要分而治之：</p>
+<ol>
+<li>分段喂给决策模型，粗筛出可能含广告的区间；</li>
+<li>对候选区间切小段，缩小范围，再切小段，缩小范围；</li>
+<li>最后精确到秒。</li>
+</ol>
+<p>决策模型一次请求可以带多个问题，每次可以十几分甚至是几十分，最后一轮基本都是在问，这一秒是不是起点或终点，比二分法快得多，不需要很多请求就能收敛。</p>
+<h2 id="系统零、系统一、系统二"><a href="#系统零、系统一、系统二" class="headerlink" title="系统零、系统一、系统二"></a>系统零、系统一、系统二</h2><p>TypeSafe 也把决策模型称为系统一（System one）模型。系统一和系统二的概念在丹尼尔·卡尼曼的《思考，快与慢》里提到过</p>
+<blockquote>
+<p>系统一是快速、直觉、自动且情绪化的思维；系统二是缓慢、审慎、需要付出努力、更具逻辑性的思维。</p>
+</blockquote>
+<p>相应的，我愿把程序称为<strong>系统零</strong>——毫无感情地执行指令的工具。</p>
+<p>从程序到决策模型，再到 LLM，确定性递减，而智能程度是递增的。在构建系统的时候，如果可以把它们放到合适的位置，能发挥更大的作用。</p>
+<p>LLM 加决策模型加各种程序，就像原始人手持长矛狩猎：LLM 相当于原始人的大脑，决策模型相当于脊椎神经系统，程序则是长矛这样的工具。</p>
+<p>狩猎的路线和策略，需要大脑规划；运动中的平衡，依赖脊椎快速调整；最后长矛直接接触击杀猎物。</p>
+<p>脑洞一下，如果在机器人领域，是否也需要这样的脊椎神经系统呢？</p>
+<p>有些任务给机器人的反应时间极其有限，比如东西从桌子上掉下来，能不能接得住，多思考一会就掉地上了，而场景又复杂多变，正是决策模型的舒适区。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
